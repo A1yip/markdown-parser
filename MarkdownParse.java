@@ -14,6 +14,14 @@ public class MarkdownParse {
         while(currentIndex < markdown.length()) {
             int openBracket = markdown.indexOf("[", currentIndex);
             int closeBracket = markdown.indexOf("]", openBracket);
+            if (openBracket != -1 ) {
+                if (markdown.charAt(openBracket - 1) == '!') {
+                    currentIndex = openBracket + 2;
+                    openBracket = markdown.indexOf("[", currentIndex);
+                    closeBracket = markdown.indexOf("]", openBracket);
+                }
+            }
+            
             if (markdown.charAt(closeBracket + 1) != '(') {
                 currentIndex = closeBracket + 1;
                 openBracket = markdown.indexOf("[", currentIndex);
@@ -30,7 +38,7 @@ public class MarkdownParse {
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             
          currentIndex = closeParen + 1;
-            System.out.println(currentIndex);
+            //System.out.println(currentIndex);
             
         }
 
