@@ -14,6 +14,28 @@ public class MarkdownParse {
         while(currentIndex < markdown.length()) {
             int openBracket = markdown.indexOf("[", currentIndex);
             int closeBracket = markdown.indexOf("]", openBracket);
+            if (markdown.charAt(closeBracket + 1) == ':') {    
+                while(currentIndex<markdown.length()){
+                    openBracket = markdown.indexOf("[", currentIndex);
+                    // System.out.println(openBracket);
+                    closeBracket = markdown.indexOf("]", openBracket);
+                    // System.out.println(closeBracket);
+                    
+                    int openParen = markdown.indexOf(" ");
+                    // System.out.println(openParen);
+        
+                    int closeParen = markdown.indexOf(" ", openParen+1);
+                    // System.out.println(closeParen);
+                    
+                    toReturn.add(markdown.substring(openParen, closeParen));
+                    break;
+        
+                }
+        
+                return toReturn;
+                
+            
+            }
             if (openBracket != -1 ) {
                 if (markdown.charAt(openBracket - 1) == '!') {
                     currentIndex = openBracket + 2;
@@ -44,6 +66,7 @@ public class MarkdownParse {
 
         return toReturn;
     }
+
     public static ArrayList<String> getLinks2(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
         int currentIndex = 0;

@@ -77,7 +77,7 @@ public class MarkdownParseTest {
         Path fileName = Path.of("test-file8.md");
         String content = Files.readString(fileName);
         MarkdownParse test = new MarkdownParse();
-        assertEquals(List.of(" https://canvas.ucsd.edu/courses/37651/files/7048491?module_item_id=1371335"),test.getLinks2(content));
+        assertEquals(List.of(" https://canvas.ucsd.edu/courses/37651/files/7048491?module_item_id=1371335"),test.getLinks(content));
     }
     
         
